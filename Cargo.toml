@@ -1,5 +1,5 @@
 [package]
-name = "my-procon-library"
+name = "my_procon_library"
 version = "0.1.0"
 edition = "2021"
 
