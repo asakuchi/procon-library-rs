@@ -1,4 +1,5 @@
-mod disjoint_set;
+pub mod disjoint_set;
+pub mod prime;
 
 fn gcd(mut n: u64, mut m: u64) -> u64 {
     while m != 0 {
