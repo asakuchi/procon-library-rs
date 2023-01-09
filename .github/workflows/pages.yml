@@ -29,4 +29,5 @@ jobs:
           git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
           cargo doc
+          npm install -g gh-pages
           gh-pages -d target/doc
