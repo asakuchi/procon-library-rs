@@ -1,6 +1,9 @@
 pub mod disjoint_set;
 pub mod prime;
 
+///
+/// ユークリッドの互除法
+///
 pub fn gcd(mut n: u64, mut m: u64) -> u64 {
     while m != 0 {
         if m < n {
