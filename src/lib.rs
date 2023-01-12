@@ -1,5 +1,6 @@
 pub mod disjoint_set;
 pub mod prime;
+pub mod run_length_encoding;
 
 ///
 /// ユークリッドの互除法
