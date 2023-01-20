@@ -1,4 +1,5 @@
 pub mod disjoint_set;
+pub mod math;
 pub mod prime;
 pub mod run_length_encoding;
 
