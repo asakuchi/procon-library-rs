@@ -1,3 +1,4 @@
+pub mod binary_indexed_tree;
 pub mod disjoint_set;
 pub mod math;
 pub mod prime;
