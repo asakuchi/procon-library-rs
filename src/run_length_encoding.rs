@@ -23,30 +23,36 @@ where
     result
 }
 
-#[test]
-fn test_run_length_enc() {
-    let list = vec![1, 2, 3, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4];
+#[cfg(test)]
+mod test {
 
-    assert_eq!(
-        run_length_encoding(&list),
-        vec![(1, 1), (2, 1), (3, 1), (1, 2), (2, 3), (3, 4), (4, 1)]
-    );
+    use super::*;
 
-    let list = vec![
-        'a', 'b', 'b', 'b', 'a', 'c', 'c', 'b', 'a', 'a', 'a', 'b', 'd',
-    ];
+    #[test]
+    fn test_run_length_enc() {
+        let list = vec![1, 2, 3, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4];
 
-    assert_eq!(
-        run_length_encoding(&list),
-        vec![
-            ('a', 1),
-            ('b', 3),
-            ('a', 1),
-            ('c', 2),
-            ('b', 1),
-            ('a', 3),
-            ('b', 1),
-            ('d', 1)
-        ]
-    );
+        assert_eq!(
+            run_length_encoding(&list),
+            vec![(1, 1), (2, 1), (3, 1), (1, 2), (2, 3), (3, 4), (4, 1)]
+        );
+
+        let list = vec![
+            'a', 'b', 'b', 'b', 'a', 'c', 'c', 'b', 'a', 'a', 'a', 'b', 'd',
+        ];
+
+        assert_eq!(
+            run_length_encoding(&list),
+            vec![
+                ('a', 1),
+                ('b', 3),
+                ('a', 1),
+                ('c', 2),
+                ('b', 1),
+                ('a', 3),
+                ('b', 1),
+                ('d', 1)
+            ]
+        );
+    }
 }

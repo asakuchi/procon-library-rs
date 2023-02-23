@@ -153,3 +153,9 @@ pub fn divisors(n: usize) -> Vec<usize> {
 
     list
 }
+
+#[cfg(test)]
+mod test {
+
+    // use super::*;
+}

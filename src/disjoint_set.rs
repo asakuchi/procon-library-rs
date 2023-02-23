@@ -57,25 +57,30 @@ impl DisjointSet {
     }
 }
 
-#[test]
-fn test_disjoint_set() {
-    let mut set = DisjointSet::new();
+#[cfg(test)]
+mod test {
+    use crate::disjoint_set::DisjointSet;
 
-    set.make_set(1);
-    set.make_set(2);
+    #[test]
+    fn test_disjoint_set() {
+        let mut set = DisjointSet::new();
 
-    assert_eq!(set.same(1, 2), false);
+        set.make_set(1);
+        set.make_set(2);
 
-    set.unite(1, 2);
+        assert_eq!(set.same(1, 2), false);
 
-    assert_eq!(set.same(1, 2), true);
-    assert_eq!(set.find_set(1), 2);
-    assert_eq!(set.find_set(2), 2);
+        set.unite(1, 2);
 
-    set.make_set(3);
-    set.unite(1, 3);
+        assert_eq!(set.same(1, 2), true);
+        assert_eq!(set.find_set(1), 2);
+        assert_eq!(set.find_set(2), 2);
 
-    assert_eq!(set.find_set(1), 3);
-    assert_eq!(set.find_set(2), 3);
-    assert_eq!(set.find_set(3), 3);
+        set.make_set(3);
+        set.unite(1, 3);
+
+        assert_eq!(set.find_set(1), 3);
+        assert_eq!(set.find_set(2), 3);
+        assert_eq!(set.find_set(3), 3);
+    }
 }
