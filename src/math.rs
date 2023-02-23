@@ -3,7 +3,7 @@
 ///
 /// 負も受け付ける
 ///
-/// https://atcoder.jp/contests/abc105/tasks/abc105_c
+/// <https://atcoder.jp/contests/abc105/tasks/abc105_c>
 ///
 pub fn to_n_adic(x: isize, radix: isize) -> Vec<usize> {
     if x == 0 {

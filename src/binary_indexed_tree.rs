@@ -1,7 +1,7 @@
 //!
 //! Binary Indexed Tree (BIT)
 //!
-//! 参考：https://algo-logic.info/binary-indexed-tree/
+//! 参考：<https://algo-logic.info/binary-indexed-tree/>
 //!
 
 ///
