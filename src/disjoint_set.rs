@@ -69,18 +69,18 @@ mod test {
         set.make_set(2);
 
         assert_eq!(set.same(1, 2), false);
+        assert_ne!(set.find_set(1), set.find_set(2));
 
         set.unite(1, 2);
 
         assert_eq!(set.same(1, 2), true);
-        assert_eq!(set.find_set(1), 2);
-        assert_eq!(set.find_set(2), 2);
+        assert_eq!(set.find_set(1), set.find_set(2));
 
         set.make_set(3);
         set.unite(1, 3);
 
-        assert_eq!(set.find_set(1), 3);
-        assert_eq!(set.find_set(2), 3);
-        assert_eq!(set.find_set(3), 3);
+        assert_eq!(set.same(1, 3), true);
+        assert_eq!(set.find_set(1), set.find_set(2));
+        assert_eq!(set.find_set(2), set.find_set(3));
     }
 }
