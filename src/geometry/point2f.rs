@@ -1,5 +1,6 @@
 use proconio::derive_readable;
 
+use super::angle::*;
 use super::prelude::*;
 
 /// 座標, ベクトル
@@ -188,19 +189,20 @@ impl Point2f {
     //     }
     // }
 
-    // /// 任意点周りの回転移動（アフィン変換）
-    // /// https://imagingsolution.net/math/rotate-around-point/
-    // #[allow(dead_code)]
-    // fn rotate(&self, center: Point2f, angle: Radian) -> Point2f {
-    //     Point2f {
-    //         x: self.x * angle.0.cos() - self.y * angle.0.sin() + center.x
-    //             - center.x * angle.0.cos()
-    //             + center.y * angle.0.sin(),
-    //         y: self.x * angle.0.sin() + self.y * angle.0.cos() + center.y
-    //             - center.x * angle.0.sin()
-    //             - center.y * angle.0.cos(),
-    //     }
-    // }
+    ///
+    /// 任意点周りの回転移動（アフィン変換）
+    ///
+    /// https://imagingsolution.net/math/rotate-around-point/
+    pub fn rotate(&self, center: Point2f, angle: Radian) -> Point2f {
+        Point2f {
+            x: self.x * angle.0.cos() - self.y * angle.0.sin() + center.x
+                - center.x * angle.0.cos()
+                + center.y * angle.0.sin(),
+            y: self.x * angle.0.sin() + self.y * angle.0.cos() + center.y
+                - center.x * angle.0.sin()
+                - center.y * angle.0.cos(),
+        }
+    }
 }
 
 #[cfg(test)]
