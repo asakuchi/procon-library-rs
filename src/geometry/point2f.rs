@@ -68,6 +68,10 @@ impl Point2f {
     /// 単位ベクトル
     pub const ONE: Point2f = Point2f { x: 1., y: 1. };
 
+    pub fn new(x: f64, y: f64) -> Point2f {
+        Point2f { x, y }
+    }
+
     /// ノルム
     /// ベクトルの大きさ
     pub fn norm(&self) -> f64 {
