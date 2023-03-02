@@ -1,5 +1,6 @@
 pub mod binary_indexed_tree;
 pub mod disjoint_set;
+pub mod doubling;
 pub mod geometry;
 pub mod math;
 pub mod prime;
