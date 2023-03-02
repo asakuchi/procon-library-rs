@@ -10,8 +10,7 @@ macro_rules! assert_float {
             (left_val, right_val) => {
                 if !((*left_val - *right_val).abs() < EPS) {
                     panic!(
-                        "assertion failed: `(left == right)` \
-                        (left: `{:?}`, right: `{:?})`",
+                        "assertion failed: `(left == right)` (left: `{:?}`, right: `{:?})`",
                         left_val, right_val
                     );
                 }
