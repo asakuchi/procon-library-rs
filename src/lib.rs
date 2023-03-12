@@ -4,6 +4,7 @@ pub mod doubling;
 pub mod geometry;
 pub mod input;
 pub mod math;
+pub mod modulus;
 pub mod prime;
 pub mod run_length_encoding;
 
