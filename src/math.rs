@@ -34,7 +34,7 @@ pub fn to_n_adic(x: isize, radix: isize) -> Vec<usize> {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
 
     use super::*;
 

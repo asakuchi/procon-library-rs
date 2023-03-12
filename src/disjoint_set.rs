@@ -58,7 +58,7 @@ impl DisjointSet {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use crate::disjoint_set::DisjointSet;
 
     #[test]

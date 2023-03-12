@@ -51,7 +51,7 @@ impl BinaryIndexedTree {
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use crate::binary_indexed_tree::BinaryIndexedTree;
 
     #[test]
