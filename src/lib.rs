@@ -2,6 +2,7 @@ pub mod binary_indexed_tree;
 pub mod disjoint_set;
 pub mod doubling;
 pub mod geometry;
+pub mod input;
 pub mod math;
 pub mod prime;
 pub mod run_length_encoding;
