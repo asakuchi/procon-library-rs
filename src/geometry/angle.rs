@@ -1,12 +1,12 @@
-use proconio::derive_readable;
+// use proconio::derive_readable;
 
 /// 度(度数法)
-#[derive_readable]
+// #[derive_readable]
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct Degree(pub f64);
 
 /// ラジアン(弧度法)
-#[derive_readable]
+// #[derive_readable]
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct Radian(pub f64);
 

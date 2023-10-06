@@ -1,10 +1,10 @@
-use proconio::derive_readable;
+// use proconio::derive_readable;
 
 use super::angle::*;
 use super::prelude::*;
 
 /// 座標, ベクトル
-#[derive_readable]
+// #[derive_readable]
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub struct Point2f {
     pub x: f64,
