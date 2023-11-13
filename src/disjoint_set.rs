@@ -1,58 +1,40 @@
 #[derive(Debug)]
 pub struct DisjointSet {
-    rank: Vec<i64>,
-    p: Vec<i64>,
+    rank: Vec<usize>,
+    parent: Vec<usize>,
 }
 
 impl DisjointSet {
-    pub fn new() -> DisjointSet {
+    pub fn new(n: usize) -> DisjointSet {
         DisjointSet {
-            rank: vec![-1; 1_000_000],
-            p: vec![-1; 1_000_000],
+            rank: vec![0; n],
+            parent: (0..n).collect::<Vec<_>>(),
         }
     }
 
-    pub fn new_with(size: i64) -> DisjointSet {
-        let mut set = DisjointSet {
-            rank: vec![-1; 1_000_000],
-            p: vec![-1; 1_000_000],
-        };
-
-        for i in 0..size {
-            set.make_set(i);
+    pub fn find_set(&mut self, x: usize) -> usize {
+        if x != self.parent[x] {
+            self.parent[x] = self.find_set(self.parent[x]);
         }
 
-        set
+        self.parent[x]
     }
 
-    pub fn make_set(&mut self, x: i64) {
-        self.p[x as usize] = x;
-        self.rank[x as usize] = 0;
-    }
+    pub fn unite(&mut self, x: usize, y: usize) {
+        let a = self.find_set(self.parent[x]);
+        let b = self.find_set(self.parent[y]);
 
-    pub fn find_set(&mut self, x: i64) -> i64 {
-        if x != self.p[x as usize] {
-            self.p[x as usize] = self.find_set(self.p[x as usize]);
-        }
-
-        self.p[x as usize]
-    }
-
-    pub fn unite(&mut self, x: i64, y: i64) {
-        let a = self.find_set(self.p[x as usize]);
-        let b = self.find_set(self.p[y as usize]);
-
-        if self.rank[a as usize] > self.rank[b as usize] {
-            self.p[b as usize] = a;
+        if self.rank[a] > self.rank[b] {
+            self.parent[b] = a;
         } else {
-            self.p[a as usize] = b;
-            if self.rank[a as usize] == self.rank[b as usize] {
-                self.rank[b as usize] += 1;
+            self.parent[a] = b;
+            if self.rank[a] == self.rank[b] {
+                self.rank[b] += 1;
             }
         }
     }
 
-    pub fn same(&mut self, x: i64, y: i64) -> bool {
+    pub fn same(&mut self, x: usize, y: usize) -> bool {
         self.find_set(x) == self.find_set(y)
     }
 }
@@ -63,24 +45,20 @@ mod tests {
 
     #[test]
     fn test_disjoint_set() {
-        let mut set = DisjointSet::new();
+        let mut set = DisjointSet::new(3);
 
-        set.make_set(1);
-        set.make_set(2);
+        assert_eq!(set.same(0, 1), false);
+        assert_ne!(set.find_set(0), set.find_set(1));
 
-        assert_eq!(set.same(1, 2), false);
-        assert_ne!(set.find_set(1), set.find_set(2));
+        set.unite(0, 1);
 
-        set.unite(1, 2);
+        assert_eq!(set.same(0, 1), true);
+        assert_eq!(set.find_set(0), set.find_set(1));
 
-        assert_eq!(set.same(1, 2), true);
+        set.unite(0, 2);
+
+        assert_eq!(set.same(0, 2), true);
+        assert_eq!(set.find_set(0), set.find_set(1));
         assert_eq!(set.find_set(1), set.find_set(2));
-
-        set.make_set(3);
-        set.unite(1, 3);
-
-        assert_eq!(set.same(1, 3), true);
-        assert_eq!(set.find_set(1), set.find_set(2));
-        assert_eq!(set.find_set(2), set.find_set(3));
     }
 }
