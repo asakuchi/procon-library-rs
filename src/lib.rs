@@ -7,6 +7,7 @@ pub mod math;
 pub mod modulus;
 pub mod prime;
 pub mod run_length_encoding;
+pub mod structure;
 
 ///
 /// ユークリッドの互除法
