@@ -55,10 +55,10 @@ mod tests {
         // 0 はどうすべき？
         assert_eq!(join(&to_n_adic(0, -2)), "0");
 
-        println!("{:?}", &to_n_adic(7, 8));
-        println!("{:?}", &to_n_adic(-9, -2));
-        println!("{:0b}", 0);
-        println!("{:0b}", 1);
-        println!("{:0b}", 2);
+        // println!("{:?}", &to_n_adic(7, 8));
+        // println!("{:?}", &to_n_adic(-9, -2));
+        // println!("{:0b}", 0);
+        // println!("{:0b}", 1);
+        // println!("{:0b}", 2);
     }
 }
