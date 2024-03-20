@@ -3,7 +3,7 @@
 ///
 /// ABC167D
 /// ```
-/// use doubling::Doubling;
+/// use asakuchi_doubling::Doubling;
 ///
 /// // 1回移動した先
 /// let list = vec![5, 4, 1, 4, 2, 1];

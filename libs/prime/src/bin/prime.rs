@@ -1,4 +1,4 @@
-use prime::*;
+use asakuchi_prime::*;
 use std::time::Instant;
 
 fn main() {

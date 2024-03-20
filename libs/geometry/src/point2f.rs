@@ -87,9 +87,9 @@ impl Point2f {
     /// マンハッタン距離
     /// 2点間の距離
     /// ```
-    /// use geometry::prelude::*;
+    /// use asakuchi_geometry::prelude::*;
     ///
-    /// use geometry::point2f::Point2f;
+    /// use asakuchi_geometry::point2f::Point2f;
     ///
     /// let p1 = Point2f { x: 3., y: 0. };
     /// let p2 = Point2f { x: 0., y: 4. };
@@ -103,9 +103,9 @@ impl Point2f {
     /// ユークリッド距離
     /// 2点間の距離
     /// ```
-    /// use geometry::prelude::*;
+    /// use asakuchi_geometry::prelude::*;
     ///
-    /// use geometry::point2f::Point2f;
+    /// use asakuchi_geometry::point2f::Point2f;
     ///
     /// let p1 = Point2f { x: 3., y: 0. };
     /// let p2 = Point2f { x: 0., y: 4. };

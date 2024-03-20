@@ -2,7 +2,7 @@
 //! https://judge.yosupo.jp/problem/unionfind
 //!
 
-use union_find::UnionFind;
+use asakuchi_union_find::UnionFind;
 
 fn main() {
     let (n, q) = input_tuple_2();

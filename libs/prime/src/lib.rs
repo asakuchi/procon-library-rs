@@ -9,7 +9,7 @@
 /// O(n log log n)
 ///
 /// ```
-/// use prime::get_prime;
+/// use asakuchi_prime::get_prime;
 ///
 /// let primes = get_prime(10);
 ///
@@ -42,7 +42,7 @@ pub fn get_prime(n: usize) -> Vec<usize> {
 /// 素数判定
 ///
 /// ```
-/// use prime::is_prime;
+/// use asakuchi_prime::is_prime;
 ///
 /// assert!(is_prime(1_000_000_007))
 /// ```
@@ -72,7 +72,7 @@ pub fn is_prime(x: usize) -> bool {
 /// 素因数分解
 ///
 /// ```
-/// use prime::prime_factorize;
+/// use asakuchi_prime::prime_factorize;
 ///
 /// let primes = prime_factorize(24);
 ///
@@ -136,7 +136,7 @@ pub fn pre_osa_k(n: usize) -> Vec<usize> {
 /// 高速な素因数分解
 ///
 /// ```
-/// use prime::{pre_osa_k, osa_k};
+/// use asakuchi_prime::{pre_osa_k, osa_k};
 ///
 /// let min_factor = pre_osa_k(1_000_000);
 /// let primes = osa_k(24, &min_factor);
@@ -163,7 +163,7 @@ pub fn osa_k(m: usize, min_factor: &Vec<usize>) -> Vec<usize> {
 /// N=10^6でK=240、N=10^9でK=1344、N=10^12でK=6720
 ///
 /// ```
-/// use prime::divisors;
+/// use asakuchi_prime::divisors;
 ///
 /// let div = divisors(27);
 ///

@@ -1,3 +1,1 @@
 cargo test
-
-cargo equip --exclude-atcoder-crates --minify libs --remove docs --remove comments --bin test_cargo_equip
