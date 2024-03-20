@@ -1,145 +1,105 @@
-pub fn input_value<T>() -> T
-where
-    T: std::str::FromStr,
-    <T as std::str::FromStr>::Err: std::fmt::Debug,
-{
-    let stdin = std::io::stdin();
+use std::io;
+use std::str;
 
-    let mut buf = String::new();
-    stdin.read_line(&mut buf).unwrap();
-    buf = buf.trim_end().to_owned();
-
-    let n = buf.parse().unwrap();
-
-    n
+pub struct Input<R> {
+    reader: R,
+    buffer: Vec<String>,
 }
 
-pub fn input_tuple_2<T>() -> (T, T)
-where
-    T: std::str::FromStr,
-    <T as std::str::FromStr>::Err: std::fmt::Debug,
-{
-    let stdin = std::io::stdin();
+impl Input<std::io::StdinLock<'static>> {
+    pub fn stdio() -> Self {
+        let stdin = std::io::stdin();
+        let scan = Input::new(stdin.lock());
 
-    let mut buf = String::new();
-    stdin.read_line(&mut buf).unwrap();
-    buf = buf.trim_end().to_owned();
-
-    let mut iter = buf.split_whitespace();
-
-    let n = iter.next().unwrap().parse().unwrap();
-    let m = iter.next().unwrap().parse().unwrap();
-
-    (n, m)
+        scan
+    }
 }
 
-pub fn input_vec<T>() -> Vec<T>
-where
-    T: std::str::FromStr,
-    <T as std::str::FromStr>::Err: std::fmt::Debug,
-{
-    let stdin = std::io::stdin();
-
-    let mut buf = String::new();
-    stdin.read_line(&mut buf).unwrap();
-    buf = buf.trim_end().to_owned();
-
-    let iter = buf.split_whitespace();
-
-    let line = iter.map(|x| x.parse().unwrap()).collect();
-
-    line
-}
-
-pub fn input_vec_2d<T>(n: usize) -> Vec<Vec<T>>
-where
-    T: std::str::FromStr,
-    <T as std::str::FromStr>::Err: std::fmt::Debug,
-{
-    // 二次元ベクタ
-
-    let stdin = std::io::stdin();
-
-    let mut a = Vec::with_capacity(n);
-
-    for _ in 0..n {
-        let mut buf = String::new();
-        stdin.read_line(&mut buf).unwrap();
-        buf = buf.trim_end().to_owned();
-
-        let iter = buf.split_whitespace();
-
-        let line = iter.map(|x| x.parse().unwrap()).collect();
-
-        a.push(line);
+impl<R: io::BufRead> Input<R> {
+    pub fn new(reader: R) -> Self {
+        Self {
+            reader,
+            buffer: vec![],
+        }
     }
 
-    a
-}
-
-pub fn input_tuple_2_vec<T>(n: usize) -> Vec<(T, T)>
-where
-    T: std::str::FromStr,
-    <T as std::str::FromStr>::Err: std::fmt::Debug,
-{
-    // タプルのベクタ
-
-    let stdin = std::io::stdin();
-
-    let mut s_t = Vec::with_capacity(n);
-
-    for _ in 0..n {
-        let mut buf = String::new();
-        stdin.read_line(&mut buf).unwrap();
-        buf = buf.trim_end().to_owned();
-
-        let mut iter = buf.split_whitespace();
-
-        let s = iter.next().unwrap().parse().unwrap();
-        let t = iter.next().unwrap().parse().unwrap();
-
-        s_t.push((s, t));
+    pub fn read<T: str::FromStr>(&mut self) -> T {
+        loop {
+            if let Some(token) = self.buffer.pop() {
+                return token.parse().ok().expect("Failed parse");
+            }
+            let mut input = String::new();
+            self.reader.read_line(&mut input).expect("Failed read");
+            self.buffer = input.split_whitespace().rev().map(String::from).collect();
+        }
     }
 
-    s_t
-}
-
-pub fn input_tuple_3_vec<T>(n: usize) -> Vec<(T, T, T)>
-where
-    T: std::str::FromStr,
-    <T as std::str::FromStr>::Err: std::fmt::Debug,
-{
-    // タプルのベクタ
-
-    let stdin = std::io::stdin();
-
-    let mut s_t_d = Vec::with_capacity(n);
-
-    for _ in 0..n {
-        let mut buf = String::new();
-        stdin.read_line(&mut buf).unwrap();
-        buf = buf.trim_end().to_owned();
-
-        let mut iter = buf.split_whitespace();
-
-        let s = iter.next().unwrap().parse().unwrap();
-        let t = iter.next().unwrap().parse().unwrap();
-        let d = iter.next().unwrap().parse().unwrap();
-
-        s_t_d.push((s, t, d));
+    pub fn usize1(&mut self) -> usize {
+        self.read::<usize>() - 1
     }
 
-    s_t_d
+    pub fn isize1(&mut self) -> isize {
+        self.read::<isize>() - 1
+    }
+
+    pub fn chars(&mut self) -> Vec<char> {
+        self.read::<String>().chars().collect()
+    }
+
+    pub fn vec<T: std::str::FromStr>(&mut self, n: usize) -> Vec<T> {
+        (0..n).map(|_| self.read()).collect()
+    }
 }
 
-pub fn input_char_vec() -> Vec<char> {
-    let stdin = std::io::stdin();
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    let mut buf = String::new();
-    stdin.read_line(&mut buf).unwrap();
-    buf = buf.trim_end().to_owned();
+    #[test]
+    fn test_io() {
+        let input = br"10
+        1 2 3 4 5 6 7 8 9 10
+        10
+        20
+        30
+        40
+        50
+        abcde fghij
+        
+        3.14 -1592
+        no_empty_line
 
-    let x = buf.chars().collect();
+        5 4
+        ";
+        let mut sc = Input::new(&input[..]);
 
-    x
+        let n: usize = sc.read();
+        assert_eq!(n, 10);
+
+        let a: Vec<u64> = sc.vec(n);
+        assert_eq!(&a, &[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+        let b: Vec<usize> = sc.vec(5);
+        assert_eq!(&b, &[10, 20, 30, 40, 50]);
+
+        let s = sc.chars();
+        let t = sc.chars();
+        assert_eq!(&s, &['a', 'b', 'c', 'd', 'e']);
+        assert_eq!(&t, &['f', 'g', 'h', 'i', 'j']);
+
+        let f: f64 = sc.read();
+        assert_eq!(f, 3.14);
+
+        let neg: i64 = sc.read();
+        assert_eq!(neg, -1592);
+
+        let s = sc.read::<String>();
+        assert_eq!(&s, "no_empty_line");
+
+        let x = sc.usize1();
+        assert_eq!(x, 4);
+
+        let y = sc.isize1();
+        assert_eq!(y, 3);
+    }
 }
