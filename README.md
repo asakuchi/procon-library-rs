@@ -2,7 +2,7 @@
 
 競技プログラミング用ライブラリ
 
-[Document](https://asakuchi.github.io/procon-library-rs/procon_library_rs/index.html)
+[Document](https://asakuchi.github.io/procon-library-rs/asakuchi_binary_indexed_tree/index.html)
 
 # add Cargo.toml
 
