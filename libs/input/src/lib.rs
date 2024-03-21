@@ -41,15 +41,6 @@ pub struct Input<R> {
     buffer: Vec<String>,
 }
 
-impl Input<std::io::StdinLock<'static>> {
-    pub fn stdio() -> Self {
-        let stdin = std::io::stdin();
-        let scan = Input::new(stdin.lock());
-
-        scan
-    }
-}
-
 impl<R: io::BufRead> Input<R> {
     pub fn new(reader: R) -> Self {
         Self {

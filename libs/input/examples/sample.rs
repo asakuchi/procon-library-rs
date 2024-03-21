@@ -1,7 +1,8 @@
 use asakuchi_input::Input;
 
 fn main() {
-    let mut input = Input::stdio();
+    let stdin = std::io::stdin();
+    let mut input = Input::new(stdin.lock());
 
     let n = 3;
     let list: Vec<usize> = input.vec(n);
