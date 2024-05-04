@@ -57,6 +57,17 @@ pub fn lcm(a: u64, b: u64) -> u64 {
     a * (b / gcd(a, b))
 }
 
+///
+/// N 以上の M の倍数のうち最小の値
+///
+pub fn minimum_multiple_greater_than(n: u64, m: u64) -> u64 {
+    if n % m == 0 {
+        n
+    } else {
+        (n / m + 1) * m
+    }
+}
+
 #[cfg(test)]
 mod tests {
 
@@ -99,5 +110,12 @@ mod tests {
     fn test_lcm() {
         assert_eq!(lcm(127, 45), 5715);
         assert_eq!(lcm(12, 18), 36);
+    }
+
+    #[test]
+    fn test_minimum_multiple_greater_than() {
+        assert_eq!(minimum_multiple_greater_than(10, 8), 16);
+        assert_eq!(minimum_multiple_greater_than(20, 8), 24);
+        assert_eq!(minimum_multiple_greater_than(24, 8), 24);
     }
 }
