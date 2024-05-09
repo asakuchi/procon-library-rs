@@ -1,0 +1,11 @@
+[package]
+name = "acl-segtree-helper"
+version = "0.1.0"
+edition = "2021"
+license = "CC0-1.0"
+
+[lib]
+name = "asakuchi_acl_segtree_helper"
+
+[dependencies]
+ac-library-rs = "=0.1.1"
