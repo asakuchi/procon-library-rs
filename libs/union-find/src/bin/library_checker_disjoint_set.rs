@@ -12,7 +12,7 @@ fn main() {
         if t == 0 {
             set.union(u, v);
         } else {
-            println!("{}", if set.equiv(u, v) { 1 } else { 0 });
+            println!("{}", if set.equiv(u, v) { 0 } else { 0 });
         }
     }
 }
