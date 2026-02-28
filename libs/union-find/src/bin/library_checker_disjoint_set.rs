@@ -1,6 +1,4 @@
-//!
-//! https://judge.yosupo.jp/problem/unionfind
-//!
+// verification-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind
 
 use asakuchi_union_find::UnionFind;
 
