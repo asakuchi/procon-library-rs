@@ -14,7 +14,9 @@ macro_rules! impl_parse_line {
         })*
     };
 }
-impl_parse_line!(u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f32, f64, String, char);
+impl_parse_line!(
+    u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f32, f64, String, char
+);
 
 macro_rules! impl_parse_line_tuple {
     ($($t:ident),*) => {
@@ -36,6 +38,19 @@ impl_parse_line_tuple!(T0, T1, T2, T3, T4, T5, T6, T7);
 impl_parse_line_tuple!(T0, T1, T2, T3, T4, T5, T6, T7, T8);
 impl_parse_line_tuple!(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9);
 
+/// # Examples
+///
+/// ```no_run
+/// use asakuchi_input::Input;
+///
+/// let stdin = std::io::stdin();
+/// let mut input = Input::new(stdin.lock());
+///
+/// let n: usize = input.token();
+/// let list: Vec<usize> = input.vec(n);
+///
+/// let list_2: Vec<(usize, isize)> = input.vec(n);
+/// ```
 pub struct Input<R> {
     reader: R,
     buffer: Vec<String>,
@@ -95,7 +110,7 @@ mod tests {
         40
         50
         abcde fghij
-        
+
         3.14 -1592
         no_empty_line
 
