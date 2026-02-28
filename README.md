@@ -4,6 +4,8 @@
 
 [Document](https://asakuchi.github.io/procon-library-rs/asakuchi_binary_indexed_tree/index.html)
 
+[![Actions Status](https://github.com/asakuchi/procon-library-rs/workflows/verify/badge.svg)](https://github.com/asakuchi/procon-library-rs/actions)
+
 # add Cargo.toml
 
 ```toml
