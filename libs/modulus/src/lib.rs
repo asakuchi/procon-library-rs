@@ -23,14 +23,14 @@ pub fn mod_pow(a: usize, n: usize, p: usize) -> usize {
 
     let t = mod_pow(a, n / 2, p);
 
-    return (t * t) % p;
+    (t * t) % p
 }
 
 ///
 /// 1 / a (mod p) を求める
 ///
 pub fn mod_inv(a: usize, p: usize) -> usize {
-    return mod_pow(a, p - 2, p);
+    mod_pow(a, p - 2, p)
 }
 
 ///
@@ -43,7 +43,7 @@ pub fn mod_perm(n: usize, k: usize, p: usize) -> usize {
         ret = (ret * (n - i)) % p;
     }
 
-    return ret;
+    ret
 }
 
 ///
@@ -53,7 +53,7 @@ pub fn mod_comb(n: usize, k: usize, p: usize) -> usize {
     let a = mod_perm(n, k, p);
     let b = mod_perm(k, k, p);
 
-    return (a * mod_inv(b, p)) % p;
+    (a * mod_inv(b, p)) % p
 }
 
 /**

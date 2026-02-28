@@ -62,7 +62,7 @@ pub fn is_prime(x: usize) -> bool {
         if x % i == 0 {
             return false;
         }
-        i = i + 2;
+        i += 2;
     }
 
     true

@@ -80,17 +80,17 @@ mod tests {
     fn test_disjoint_set() {
         let mut set = UnionFind::new(3);
 
-        assert_eq!(set.equiv(0, 1), false);
+        assert!(!set.equiv(0, 1));
         assert_ne!(set.find(0), set.find(1));
 
         set.union(0, 1);
 
-        assert_eq!(set.equiv(0, 1), true);
+        assert!(set.equiv(0, 1));
         assert_eq!(set.find(0), set.find(1));
 
         set.union(0, 2);
 
-        assert_eq!(set.equiv(0, 2), true);
+        assert!(set.equiv(0, 2));
         assert_eq!(set.find(0), set.find(1));
         assert_eq!(set.find(1), set.find(2));
     }

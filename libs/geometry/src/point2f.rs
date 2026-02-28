@@ -210,8 +210,6 @@ impl Point2f {
 #[cfg(test)]
 mod tests {
 
-    use crate::assert_float;
-
     // use super::*;
 
     #[test]

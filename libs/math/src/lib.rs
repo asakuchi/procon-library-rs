@@ -41,11 +41,9 @@ pub fn to_n_adic(x: isize, radix: isize) -> Vec<usize> {
 pub fn gcd(mut n: u64, mut m: u64) -> u64 {
     while m != 0 {
         if m < n {
-            let t = m;
-            m = n;
-            n = t;
+            std::mem::swap(&mut m, &mut n);
         }
-        m = m % n;
+        m %= n;
     }
     n
 }

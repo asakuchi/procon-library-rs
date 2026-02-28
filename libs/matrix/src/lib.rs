@@ -61,7 +61,7 @@ mod matrix {
             // t %= MOD;
 
             if x % 2 == 1 {
-                t = t.dot(&self);
+                t = t.dot(self);
                 // t %= MOD;
             }
 

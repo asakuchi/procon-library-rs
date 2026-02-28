@@ -26,7 +26,7 @@ impl LinkedList {
     pub fn stringify(&self) -> String {
         match &self {
             LinkedList::Cons(head, ref tail) => format!("{}, {}", head, tail.stringify()),
-            Self::Nil => format!("Nil"),
+            Self::Nil => "Nil".to_string(),
         }
     }
 }
